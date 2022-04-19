@@ -1,24 +1,14 @@
 terraform {
  required_version = ">= 0.12.26"
-  required_providers {
-    docker = {
-       source = "terraform-providers/docker"
-    }
-  }
+ }
   
-}
-provider "docker"{}
-
-resource "docker_image" "nginx" {
-  name         = "nginx:latest"
-  keep_locally = false
+provider "kubernetes" {
+  config_path    = "~/.kube/config"
+  config_context = "my-context"
 }
 
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.latest
-  name  = "tutorial"
-  ports {
-    internal = 80
-    external = 8081
+resource "kubernetes_namespace" "example" {
+  metadata {
+    name = "production"
   }
 }
