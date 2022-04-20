@@ -11,7 +11,7 @@ resource "kubernetes_deployment" "example" {
   }
 
   spec {
-    replicas = 3
+    replicas = 1
 
     selector {
       match_labels = {
@@ -34,7 +34,7 @@ resource "kubernetes_deployment" "example" {
           resources {
             limits = {
               cpu    = "0.5"
-              memory = "512Mi"
+              memory = "128Mi"
             }
             requests = {
               cpu    = "250m"
